@@ -62,8 +62,8 @@ footer{margin-top:3rem;color:var(--muted);font-size:.88rem}
   <span class="badge wait">In progress</span>
   <div>
     <strong>Where things stand.</strong> The statements are correctly formalized. A static scan of all 17.4 million lines finds no axioms, no <code>sorry</code>, and no way around the kernel. The full compile is running. The decisive checks still to come are <code>#print axioms</code> and two independent kernel replays; we will post their output verbatim.
-    <div class="bar" aria-label="build progress"><span id="pbar" style="width:53%"></span></div>
-    <div id="pnote" style="font-size:.9rem;color:var(--muted)">At 23:13 UTC: 92,836 of 175,187 modules compiled (53.0%), 0 compile failures. The build is now limited by its longest dependency chain. Kernel replay has started on the compiled modules: 900 replayed so far, 0 rejected.</div>
+    <div class="bar" aria-label="build progress"><span id="pbar" style="width:78%"></span></div>
+    <div id="pnote" style="font-size:.9rem;color:var(--muted)">At 23:42 UTC: 137,029 of 175,187 modules compiled (78.2%), 0 compile failures. The longest remaining dependency chain is 121 modules, so we expect the compile to finish at about 00:30 UTC. Kernel replay: 12,150 modules replayed, 0 rejected. The full replay should finish about 1–1.5 hours after the compile.</div>
   </div>
 </div>
 
@@ -149,6 +149,7 @@ def DirichletLZerosOnLine : Prop :=
 <p>If the compile succeeds, the axioms are only the standard three, and both kernels accept, then the theorems above are proved. This assumes only that the Lean kernel (checked twice, by independent implementations) is sound and that Mathlib's definitions of ζ and of Dirichlet L-functions mean what they are supposed to. Those definitions are long established and come with the Euler product, the functional equation, ζ(2) = π²/6 and the prime number theorem.</p>
 <h2>Log</h2>
 <ul class="log" id="log">
+<li><time>2026-11-20 23:42 UTC</time>78% compiled, 0 failures. Kernel replay: 12,150 modules accepted, 0 rejected. Three replay chunks on one server were stopped by the operating system under memory pressure, not rejected by the kernel; we reduced the number of workers on that server and are re-running those chunks in full.</li>
 <li><time>2026-11-20 23:13 UTC</time>53% compiled. Kernel replay running alongside the build on spare cores: 900 modules replayed, 0 rejected.</li>
 <li><time>2026-11-20 23:02 UTC</time>Fixed a bug in our scheduler: a 230-character module name pushed a temporary file name past the 255-byte limit. The compile itself had succeeded. Restarted the coordinator, which resumed from the 82,635 modules already compiled.</li>
 <li><time>2026-11-20 22:47 UTC</time>47,384 modules compiled (27%), 0 failures. Tested <code>leanchecker</code> on the first compiled modules; it accepts them.</li>
