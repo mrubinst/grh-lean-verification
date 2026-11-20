@@ -37,7 +37,7 @@ def opts_for(m):
 
 def put(src, dst):
     os.makedirs(os.path.dirname(dst), exist_ok=True)
-    tmp = dst + f'.tmp.{HOST}.{threading.get_ident()}'
+    tmp = os.path.join(os.path.dirname(dst), f'.t{HOST}{threading.get_ident()}')  # short: module names reach 230 chars
     shutil.copyfile(src, tmp); os.replace(tmp, dst)
 
 def compile_(m):

@@ -1,0 +1,6 @@
+name = "checklist"
+defaultTargets = ["checklist"]
+
+[[lean_exe]]
+name = "checklist"
+root = "Main"
