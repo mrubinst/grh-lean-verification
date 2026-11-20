@@ -1,0 +1,32 @@
+files: 175187
+lines: 17374215
+
+== Constructs that add unproved assumptions or bypass the kernel (expect 0) ==
+^\s*axiom\b                                                                 0 files
+\bsorry\b                                                                   0 files
+\bsorryAx\b                                                                 0 files
+^\s*(by\s+)?admit\b|\badmit\s*$                                             0 files
+native_decide                                                               0 files
+ofReduceBool                                                                0 files
+trustCompiler                                                               0 files
+implemented_by                                                              0 files
+@\[extern                                                                   0 files
+\bunsafe\b                                                                  0 files
+^\s*opaque\b                                                                0 files
+addDeclWithoutChecking|addDeclCore|Kernel\.Environment\.add                 0 files
+set_option\s+debug\.                                                        0 files
+
+== Metaprogramming present (inspect by hand; kernel still checks results) ==
+^\s*elab\b|\belab "                                                         3 files
+run_cmd                                                                     5 files
+\baddDecl\b                                                                 1 files
+modifyEnv|setEnv                                                            5 files
+^import Lean                                                                7 files
+  BuildAid/D1.lean
+  BuildAid/D2.lean
+  BuildAid/D3.lean
+  BuildAid/D4.lean
+  BuildAid/D5.lean
+  Formalism/HermitianCurvature/HermitianCurvatureProofs/CutCptCopy.lean
+  Formalism/LocalToGlobal/IndefiniteReal/HeckeNonvanishing/Imports.lean
+  Formalism/LocalToGlobal/NumberFieldFamilies/OwnStruct.lean
