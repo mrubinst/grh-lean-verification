@@ -62,8 +62,8 @@ footer{margin-top:3rem;color:var(--muted);font-size:.88rem}
   <span class="badge wait">In progress</span>
   <div>
     <strong>Where things stand.</strong> The statements are correctly formalized. A static scan of all 17.4 million lines finds no axioms, no <code>sorry</code>, and no way around the kernel. The full compile is running. The decisive checks still to come are <code>#print axioms</code> and two independent kernel replays; we will post their output verbatim.
-    <div class="bar" aria-label="build progress"><span id="pbar" style="width:11.5%"></span></div>
-    <div id="pnote" style="font-size:.9rem;color:var(--muted)">Build at 22:39 UTC: 20,146 of 175,187 modules compiled (11.5%), 0 failures, about 1,500 compiling at once on 12 servers.</div>
+    <div class="bar" aria-label="build progress"><span id="pbar" style="width:27%"></span></div>
+    <div id="pnote" style="font-size:.9rem;color:var(--muted)">Build at 22:47 UTC: 47,384 of 175,187 modules compiled (27.0%), 0 failures, about 3,500 modules per minute on 12 servers.</div>
   </div>
 </div>
 
@@ -145,17 +145,13 @@ def DirichletLZerosOnLine : Prop :=
 <div>Toolchain</div><div>Lean 4.33.1 · Mathlib <span class="mono">0df444a3</span> · lean4export v4.33.0 · nanoda <span class="mono">0da9f98</span></div>
 </div>
 
-<h2>Other independent checks</h2>
-<ul>
-<li>Andrew Sutherland's verification page: <a href="https://math.mit.edu/~drew/grh/">math.mit.edu/~drew/grh</a>. We have not used his outputs. The only point of comparison so far: our hash of the assembled <code>lean.tar.gz</code> matches the one he lists.</li>
-<li>Discussion: <a href="https://mathoverflow.net/">MathOverflow</a>, "How to 'human verify' enormous AI math output?"</li></ul>
-
 <h2>What a successful check will and won't mean</h2>
 <p>If the compile succeeds, the axioms are only the standard three, and both kernels accept, then the theorems above are proved. This assumes only that the Lean kernel (checked twice, by independent implementations) is sound and that Mathlib's definitions of ζ and of Dirichlet L-functions mean what they are supposed to. Those definitions are long established and come with the Euler product, the functional equation, ζ(2) = π²/6 and the prime number theorem.</p>
 <p>A successful check says nothing about whether a human can understand the proof. That is a separate and much larger project.</p>
 
 <h2>Log</h2>
 <ul class="log" id="log">
+<li><time>2026-11-20 22:47 UTC</time>47,384 modules compiled (27%), 0 failures. Tested <code>leanchecker</code> on the first compiled modules; it accepts them.</li>
 <li><time>2026-11-20 22:39 UTC</time>20,146 modules compiled, 0 failures.</li>
 <li><time>2026-11-20 22:29 UTC</time>Distributed build started from a clean output directory. Lake's partial outputs were discarded, so every module is compiled by one documented method.</li>
 <li><time>2026-11-20 21:23 UTC</time>Moved the build to local disk after measuring that loading Mathlib over NFS took 35–220 s per module.</li>
