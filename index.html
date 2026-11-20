@@ -62,15 +62,15 @@ footer{margin-top:3rem;color:var(--muted);font-size:.88rem}
   <span class="badge wait">In progress</span>
   <div>
     <strong>Where things stand.</strong> The statements are correctly formalized. A static scan of all 17.4 million lines finds no axioms, no <code>sorry</code>, and no way around the kernel. The full compile is running. The decisive checks still to come are <code>#print axioms</code> and two independent kernel replays; we will post their output verbatim.
-    <div class="bar" aria-label="build progress"><span id="pbar" style="width:0%"></span></div>
-    <div id="pnote" style="font-size:.9rem;color:var(--muted)">Build: starting the distributed compile (175,187 modules).</div>
+    <div class="bar" aria-label="build progress"><span id="pbar" style="width:11.5%"></span></div>
+    <div id="pnote" style="font-size:.9rem;color:var(--muted)">Build at 22:39 UTC: 20,146 of 175,187 modules compiled (11.5%), 0 failures, about 1,500 compiling at once on 12 servers.</div>
   </div>
 </div>
 
 <h2>Checklist</h2>
 <table class="steps">
 <tr><td><span class="badge ok">Done</span></td><td><div class="what">Source matches the author's release</div>
-<div class="how">Downloaded the 14 parts listed in the footnote of <a href="https://alpo.ge/remark.pdf">remark.pdf</a> twice, on two machines, and checked their SHA-256 hashes (<a href="SHA256SUMS.parts">SHA256SUMS.parts</a>). The assembled <code>lean.tar.gz</code> (239,275,554 bytes) has SHA-256 <span class="mono">9631b4f020199e580ba86178cb56c6e9b09f690c2369a80dc4334aa93f49c7fc</span>. The GitHub mirror <a href="https://github.com/maksym-radziwill/Reyman">maksym-radziwill/Reyman</a> (commit <span class="mono">4912a77b</span>) is byte-identical apart from its README.</div></td></tr>
+<div class="how">Downloaded the 14 parts listed in the footnote of <a href="https://alpo.ge/remark.pdf">remark.pdf</a> twice, on two machines, and checked their SHA-256 hashes (<a href="SHA256SUMS.parts">SHA256SUMS.parts</a>). The assembled <code>lean.tar.gz</code> (239,275,554 bytes) has SHA-256 <span class="mono">9631b4f020199e580ba86178cb56c6e9b09f690c2369a80dc4334aa93f49c7fc</span>.</div></td></tr>
 <tr><td><span class="badge ok">Done</span></td><td><div class="what">The theorem statements say what they should</div>
 <div class="how">Read by hand; see <a href="#statements">below</a>. The RH statement is Mathlib's own <code>RiemannHypothesis</code>. The GRH statements live in a 16-line file that imports only Mathlib.</div></td></tr>
 <tr><td><span class="badge ok">Done</span></td><td><div class="what">The dependencies are genuine upstream releases</div>
@@ -148,9 +148,7 @@ def DirichletLZerosOnLine : Prop :=
 <h2>Other independent checks</h2>
 <ul>
 <li>Andrew Sutherland's verification page: <a href="https://math.mit.edu/~drew/grh/">math.mit.edu/~drew/grh</a>. We have not used his outputs. The only point of comparison so far: our hash of the assembled <code>lean.tar.gz</code> matches the one he lists.</li>
-<li>Discussion: <a href="https://mathoverflow.net/">MathOverflow</a>, "How to 'human verify' enormous AI math output?"</li>
-<li>Source mirrors: <a href="https://github.com/maksym-radziwill/Reyman">maksym-radziwill/Reyman</a>, <a href="https://github.com/Deicyde/riemann-hypothesis">Deicyde/riemann-hypothesis</a></li>
-</ul>
+<li>Discussion: <a href="https://mathoverflow.net/">MathOverflow</a>, "How to 'human verify' enormous AI math output?"</li></ul>
 
 <h2>What a successful check will and won't mean</h2>
 <p>If the compile succeeds, the axioms are only the standard three, and both kernels accept, then the theorems above are proved. This assumes only that the Lean kernel (checked twice, by independent implementations) is sound and that Mathlib's definitions of ζ and of Dirichlet L-functions mean what they are supposed to. Those definitions are long established and come with the Euler product, the functional equation, ζ(2) = π²/6 and the prime number theorem.</p>
@@ -158,7 +156,8 @@ def DirichletLZerosOnLine : Prop :=
 
 <h2>Log</h2>
 <ul class="log" id="log">
-<li><time>2026-11-20 22:40 UTC</time>Distributed build started; this page created.</li>
+<li><time>2026-11-20 22:39 UTC</time>20,146 modules compiled, 0 failures.</li>
+<li><time>2026-11-20 22:29 UTC</time>Distributed build started from a clean output directory. Lake's partial outputs were discarded, so every module is compiled by one documented method.</li>
 <li><time>2026-11-20 21:23 UTC</time>Moved the build to local disk after measuring that loading Mathlib over NFS took 35–220 s per module.</li>
 <li><time>2026-11-20 20:52 UTC</time>First <code>lake build</code> started. <code>Statements.lean</code> builds against Mathlib's official cache.</li>
 <li><time>2026-11-20 20:20 UTC</time>Source downloaded and hashed, statements read, static audit done.</li>
