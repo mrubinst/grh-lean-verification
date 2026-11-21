@@ -59,11 +59,11 @@ footer{margin-top:3rem;color:var(--muted);font-size:.88rem}
 <p class="sub">Checking the Lean 4 formalization announced by Levent Alpöge and Claude on 20 November 2026. This page is updated as results come in.</p>
 
 <div class="box status">
-  <span class="badge wait">In progress</span>
+  <span class="badge wait">Two checks running</span>
   <div>
-    <strong>Where things stand.</strong> The statements are correctly formalized. A static scan of all 17.4 million lines finds no axioms, no <code>sorry</code>, and no way around the kernel. The full compile is running. The decisive checks still to come are <code>#print axioms</code> and two independent kernel replays; we will post their output verbatim.
-    <div class="bar" aria-label="build progress"><span id="pbar" style="width:99.9%"></span></div>
-    <div id="pnote" style="font-size:.9rem;color:var(--muted)">At 01:28 UTC (21 Nov): 175,170 of 175,187 modules compiled, 0 compile failures. The last 17 modules sit at the top of the import graph and must compile one after another, at close to a minute each. Kernel replay: 66,781 modules replayed, 0 rejected; at the current rate it should finish at about 04:15 UTC.</div>
+    <strong>Where things stand.</strong> All 175,187 modules compile with no errors, and <code>#print axioms</code> reports only the three standard axioms for all five main theorems. Two checks are still running: a kernel replay of every module, and a check of the theorems' full dependency closure by an independent kernel (nanoda).
+    <div class="bar" aria-label="build progress"><span id="pbar" style="width:100%"></span></div>
+    <div id="pnote" style="font-size:.9rem;color:var(--muted)">At 01:55 UTC (21 Nov): compile finished at 01:47:44 UTC, 175,187 of 175,187 modules, 0 failures. Kernel replay: 82,785 modules replayed, 0 rejected; expected to finish at about 04:00 UTC. The nanoda export started at 01:49 UTC.</div>
   </div>
 </div>
 
@@ -77,14 +77,19 @@ footer{margin-top:3rem;color:var(--muted);font-size:.88rem}
 <div class="how">Lean <code>v4.33.1</code> (commit <span class="mono">819816b2</span>), an official release of 2026-08-21. Mathlib is pinned at <span class="mono">0df444a3</span>, the upstream commit "chore: bump toolchain to v4.33.1".</div></td></tr>
 <tr><td><span class="badge ok">Done</span></td><td><div class="what">Static scan for unproved assumptions and kernel bypasses</div>
 <div class="how">No <code>axiom</code>, <code>sorry</code>, <code>admit</code>, <code>native_decide</code>, <code>implemented_by</code>, <code>extern</code>, <code>unsafe</code>, <code>opaque</code>, or unchecked declaration-adding calls in 175,187 files (<a href="audit.txt">audit.txt</a>, <a href="scripts/audit.sh">audit.sh</a>). The few custom tactics and commands have been read and all go through the kernel; details <a href="#audit">below</a>. A text scan is only a first filter. The authoritative checks are the next three rows.</div></td></tr>
-<tr><td><span class="badge wait">Running</span></td><td><div class="what">Full compile of all 175,187 modules</div>
-<div class="how">Lean v4.33.1 with Mathlib's official prebuilt cache, distributed across several servers; method <a href="#build">below</a>.</div></td></tr>
-<tr><td><span class="badge wait">Pending</span></td><td><div class="what"><code>#print axioms</code> for the five main theorems</div>
-<div class="how">Should list only <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code>. Any assumed RH/GRH, <code>sorry</code>, or <code>native_decide</code> would appear here. <a href="scripts/Axioms.lean">Axioms.lean</a></div></td></tr>
+<tr><td><span class="badge ok">Done</span></td><td><div class="what">Full compile of all 175,187 modules</div>
+<div class="how">175,187 of 175,187 modules compiled with Lean v4.33.1 against Mathlib's official prebuilt cache; 0 errors. Finished 2026-11-21 01:47:44 UTC, 3 h 18 min after the distributed build started. SHA-256 of the resulting <code>Main.olean</code>: <span class="mono">9146dfb4148e24d2252e04c50742f3e49dd126dfcc5006d10bf5f873ddf796ad</span>. Method <a href="#build">below</a>.</div></td></tr>
+<tr><td><span class="badge ok">Done</span></td><td><div class="what"><code>#print axioms</code> for the five main theorems</div>
+<div class="how">Each of the five theorems depends only on <code>propext</code>, <code>Classical.choice</code> and <code>Quot.sound</code>. No <code>sorryAx</code>, no <code>Lean.ofReduceBool</code>, nothing else. Full output: <a href="axioms.out">axioms.out</a>, produced by <a href="scripts/Axioms.lean">Axioms.lean</a>.
+<pre><code>'riemannHypothesis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'riemannZeta_eq_zero_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LFunction_ne_zero_of_half_lt_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LFunction_eq_zero_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LFunction_eq_zero_re_of_isPrimitive' depends on axioms: [propext, Classical.choice, Quot.sound]</code></pre></div></td></tr>
 <tr><td><span class="badge wait">Running</span></td><td><div class="what">Kernel replay of every module (Lean's <code>leanchecker</code> routine)</div>
 <div class="how">For each module, load its imports and re-add every declaration the module defines through the Lean kernel. This is independent of how the <code>.olean</code> files were produced. The stock <code>leanchecker</code> binary resolves each module named on its command line by walking all the <code>.olean</code> files, which was impractically slow for 175,187 modules. So we call its replay function <code>replayFromImports</code>, copied verbatim from <code>src/LeanChecker.lean</code> at v4.33.1 (checked by diff), from a 20-line driver that reads an explicit module list: <a href="checklist/Main.lean">checklist/Main.lean</a>. Work is spread across servers in chunks of 150 modules (<a href="dist/check_worker.py">check_worker.py</a>). Each module is counted as checked only if the driver prints <code>OK</code> for it.</div></td></tr>
-<tr><td><span class="badge wait">Pending</span></td><td><div class="what">Independent kernel: nanoda (Rust)</div>
-<div class="how">Export the environment with <a href="https://github.com/leanprover/lean4export">lean4export</a> v4.33.0 and check it with <a href="https://github.com/ammkrn/nanoda_lib">nanoda</a> (commit <span class="mono">0da9f98</span>). Only <code>propext</code>, <code>Classical.choice</code> and <code>Quot.sound</code> will be allowed as axioms.</div></td></tr>
+<tr><td><span class="badge wait">Running</span></td><td><div class="what">Independent kernel: nanoda (Rust)</div>
+<div class="how">Export the five main theorems together with everything they depend on, using <a href="https://github.com/leanprover/lean4export">lean4export</a> v4.33.0, and check the export with <a href="https://github.com/ammkrn/nanoda_lib">nanoda</a> (commit <span class="mono">0da9f98</span>). Only <code>propext</code>, <code>Classical.choice</code> and <code>Quot.sound</code> are permitted; use of any other axiom is an error. Script and configuration: <a href="scripts/run_export_nanoda.sh">run_export_nanoda.sh</a>, <a href="scripts/nanoda_config.json">nanoda_config.json</a>. The export started at 01:49 UTC.</div></td></tr>
 </table>
 
 <h2 id="statements">What exactly is claimed</h2>
@@ -149,6 +154,8 @@ def DirichletLZerosOnLine : Prop :=
 <p>If the compile succeeds, the axioms are only the standard three, and both kernels accept, then the theorems above are proved. This assumes only that the Lean kernel (checked twice, by independent implementations) is sound and that Mathlib's definitions of ζ and of Dirichlet L-functions mean what they are supposed to. Those definitions are long established and come with the Euler product, the functional equation, ζ(2) = π²/6 and the prime number theorem.</p>
 <h2>Log</h2>
 <ul class="log" id="log">
+<li><time>2026-11-21 01:55 UTC</time><code>#print axioms</code>: all five theorems depend only on <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code>. Kernel replay: 82,785 modules accepted, 0 rejected. Export for nanoda started.</li>
+<li><time>2026-11-21 01:47 UTC</time>Compile finished: 175,187 of 175,187 modules, 0 errors.</li>
 <li><time>2026-11-21 01:28 UTC</time>175,170 of 175,187 modules compiled, 0 failures. Kernel replay: 66,781 modules accepted, 0 rejected.</li>
 <li><time>2026-11-21 00:09 UTC</time>91% compiled, 0 failures. Kernel replay: 23,550 modules accepted, 0 rejected. Replay workers we had added on the two largest servers slowed the compile there, so we removed them until the compile finishes; their unfinished chunks were returned to the queue.</li>
 <li><time>2026-11-20 23:42 UTC</time>78% compiled, 0 failures. Kernel replay: 12,150 modules accepted, 0 rejected. Three replay chunks on one server were stopped by the operating system under memory pressure, not rejected by the kernel; we reduced the number of workers on that server and are re-running those chunks in full.</li>
