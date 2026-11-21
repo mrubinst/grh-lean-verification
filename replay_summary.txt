@@ -1,0 +1,8 @@
+Kernel replay summary (generated Sat Nov 21 05:26:08 AM UTC 2026)
+modules=175187 ok=175187 pending=0 missing=0 FAIL_lines=0 extra_ok=0
+COMPLETE: all 175187 modules replayed OK
+ok result files: 1226
+chunks interrupted by earlyoom and re-run: 63
+sha256 of sorted list of OK module names: 53e5f722e87a864925477892d75d60d357456b9f63b5d50b9f54b9536d90a482
+sha256 of sorted list of compiled module names: 53e5f722e87a864925477892d75d60d357456b9f63b5d50b9f54b9536d90a482
+hosts:      59 cpu149;     37 cpu150;     85 cpu151;    170 cpu152;    101 cpu153;    122 cpu154;     36 cpu155;    156 cpu156;     76 cpu157;    168 cpu158;     54 cpu160;    162 cpu162;
