@@ -62,8 +62,8 @@ footer{margin-top:3rem;color:var(--muted);font-size:.88rem}
   <span class="badge wait">In progress</span>
   <div>
     <strong>Where things stand.</strong> The statements are correctly formalized. A static scan of all 17.4 million lines finds no axioms, no <code>sorry</code>, and no way around the kernel. The full compile is running. The decisive checks still to come are <code>#print axioms</code> and two independent kernel replays; we will post their output verbatim.
-    <div class="bar" aria-label="build progress"><span id="pbar" style="width:91%"></span></div>
-    <div id="pnote" style="font-size:.9rem;color:var(--muted)">At 00:09 UTC (21 Nov): 159,538 of 175,187 modules compiled (91.1%), 0 compile failures. What remains is a chain of 92 modules that must compile one after another, so we expect the compile to finish between 01:00 and 01:30 UTC. Kernel replay: 23,550 modules replayed, 0 rejected; it runs at reduced width until the compile is done, and we expect it to finish several hours after that.</div>
+    <div class="bar" aria-label="build progress"><span id="pbar" style="width:99.9%"></span></div>
+    <div id="pnote" style="font-size:.9rem;color:var(--muted)">At 01:28 UTC (21 Nov): 175,170 of 175,187 modules compiled, 0 compile failures. The last 17 modules sit at the top of the import graph and must compile one after another, at close to a minute each. Kernel replay: 66,781 modules replayed, 0 rejected; at the current rate it should finish at about 04:15 UTC.</div>
   </div>
 </div>
 
@@ -149,6 +149,7 @@ def DirichletLZerosOnLine : Prop :=
 <p>If the compile succeeds, the axioms are only the standard three, and both kernels accept, then the theorems above are proved. This assumes only that the Lean kernel (checked twice, by independent implementations) is sound and that Mathlib's definitions of ζ and of Dirichlet L-functions mean what they are supposed to. Those definitions are long established and come with the Euler product, the functional equation, ζ(2) = π²/6 and the prime number theorem.</p>
 <h2>Log</h2>
 <ul class="log" id="log">
+<li><time>2026-11-21 01:28 UTC</time>175,170 of 175,187 modules compiled, 0 failures. Kernel replay: 66,781 modules accepted, 0 rejected.</li>
 <li><time>2026-11-21 00:09 UTC</time>91% compiled, 0 failures. Kernel replay: 23,550 modules accepted, 0 rejected. Replay workers we had added on the two largest servers slowed the compile there, so we removed them until the compile finishes; their unfinished chunks were returned to the queue.</li>
 <li><time>2026-11-20 23:42 UTC</time>78% compiled, 0 failures. Kernel replay: 12,150 modules accepted, 0 rejected. Three replay chunks on one server were stopped by the operating system under memory pressure, not rejected by the kernel; we reduced the number of workers on that server and are re-running those chunks in full.</li>
 <li><time>2026-11-20 23:13 UTC</time>53% compiled. Kernel replay running alongside the build on spare cores: 900 modules replayed, 0 rejected.</li>
