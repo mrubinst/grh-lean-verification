@@ -1,0 +1,31 @@
+closure of riemannHypothesis: 1478198 constants
+sup_le_mean_square: [GlobalTheory.ThetaSupBall.sup_le_mean_square used=true]
+sup_translate_le: [GlobalTheory.ThetaSupPair.sup_translate_le used=true]
+integral_le_of_disjoint_translates: [GlobalTheory.ThetaSupBall.integral_le_of_disjoint_translates used=true]
+norm_pow_le_factorial_div_mul_integral_ball: [GlobalTheory.norm_pow_le_factorial_div_mul_integral_ball used=true]
+fock_subst_le: [GlobalTheory.JetBlock.fock_subst_le used=true]
+theta_line: [GlobalTheory.ConjNorm.Line.theta_line used=true, GlobalTheory.ThetaLine.theta_line used=true]
+letters_and_sizes: [GlobalTheory.NormSum.letters_and_sizes used=true]
+blockBound: [GlobalTheory.JetBlock.blockBound used=true, Formalism.DimensionVariation.blockBound used=true]
+chowla_selberg_eta: [GlobalTheory.chowla_selberg_eta used=true]
+chowla_selberg_period: [GlobalTheory.T.chowla_selberg_period used=true]
+exists_cbData: [GlobalTheory.DefRowsCB.exists_cbData used=true]
+young_diagram_hook: [Formalism.DivisionValues.young_diagram_hook used=true]
+young_diagram_step: [Formalism.DivisionValues.young_diagram_step used=true]
+hTie_of: [Formalism.L2.DIV.hTie_of used=true, Formalism.L2.SG.NGHTie.hTie_of used=true]
+meanPeriod: [GlobalTheory.MeanPeriodClosed.meanPeriod used=true]
+first_descent_explicit: [Formalism.DimensionVariation.first_descent_explicit used=false]
+weightedSchurBound: [Formalism.DimensionVariation.weightedSchurBound used=false]
+placeBound: [GlobalTheory.FinGL.MultSharpObj.placeBound used=true, Formalism.DimensionVariation.placeBound used=true]
+link_of_local_closed: [Formalism.L2.G.link_of_local_closed used=true]
+linkG_without_kernels: [Formalism.L2.G.linkG_without_kernels used=true]
+thmAEntryFull: [Formalism.DworkPowerSeriesWeights.thmAEntryFull used=false]
+thmBGauss: [Formalism.DworkPowerSeriesWeights.thmBGauss used=false]
+normCor7: [Formalism.DworkPowerSeriesWeights.OddLevelGainBounds.normCor7 used=true]
+secondPartClosed: [Formalism.MainNotions.SelectionLemmas.Pf.secondPartClosed used=true]
+stmtE: [Formalism.MainNotions.PlaneGram.stmtE used=true, Formalism.MainNotions.TraceSpectra.stmtE used=true]
+flipOneThree: [Formalism.MainNotions.Gaps.EtaleWeightGaps.flipOneThree used=true,
+ Formalism.YangianSpanCharacter.T.flipOneThree used=false,
+ GlobalTheory.OT.Num.flipOneThree used=false]
+depcheck: 866.05 s wall, 92798340 KB
+rc=0

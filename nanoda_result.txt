@@ -1,0 +1,6 @@
+Checked 1484729 declarations with no typechecker errors, 1 pretty printer errors: [
+    "Unable to print axioms",
+]
+	Command being timed: "/u/mrubinst/alpoge_grh/tools/nanoda_lib/target/release/nanoda_bin /u/mrubinst/alpoge_grh/dist/nanoda_config.json"
+NANODA_EXIT
+NANODA_EXIT 0 Sat Nov 21 10:06:58 AM UTC 2026
