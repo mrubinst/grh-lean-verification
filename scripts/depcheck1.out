@@ -1,0 +1,50 @@
+closure of riemannHypothesis: 1478198 constants
+landau_window: [Deduction.landau_window used=true]
+WindowHypU: [Deduction.WindowHypU used=true]
+zeroFreeAll_of_topG: [UpperTheory.Top.zeroFreeAll_of_topG used=true]
+supplyChi: [UpperTheory.Top.supplyChi used=true]
+pairEx: [PositivityTheory.ThKG.Tow.pairEx used=false,
+ GlobalTheory.PairIt.pairEx used=false,
+ UpperTheory.TP.Tools.pairEx used=false,
+ UpperTheory.ConvolutionTheory.RankTwoDescent.pairEx used=true,
+ QH.pairEx used=true,
+ UpperTheory.TP.Tools_k.pairEx used=true,
+ UpperTheory.V.Pa.pairEx used=true]
+PairEx: [GlobalTheory.SepRows.PairEx used=true,
+ UpperTheory.Top.PairEx used=true,
+ UpperTheory.ConvolutionTheory.RankTwoDescent.PairEx used=true,
+ PositivityTheory.ThKG.Tow.PairEx used=true]
+PairGood: [UpperTheory.Top.PairGood used=true]
+ZeroBox: [UpperTheory.Top.ZeroBox used=true]
+WinPair: [UpperTheory.Top.WinPair used=true]
+BoxCountHyp: [Formalism.HermitianLattices.ZeroFreeRegionGL2.BoxCountHyp used=false]
+BoxTailHyp: [Formalism.HermitianLattices.ZeroFreeRegionGL2.BoxTailHyp used=false]
+MeanSquareHyp: [Formalism.HermitianLattices.ZeroFreeRegionGL2.MeanSquareHyp used=false]
+ThinScales: [Formalism.LFunctionChainParameters.ThickSetMeanBounds.ThinScales used=true]
+NodeSizes: [Formalism.LFunctionChainParameters.ThickSetMeanBounds.NodeSizes used=true]
+ThickPartTranslateMean: [Formalism.LFunctionChainParameters.ThickSetMeanBounds.ThickPartTranslateMean used=false]
+GrowthInequalityForm: [Formalism.LFunctionChainParameters.ThickSetMeanBounds.GrowthInequalityForm used=false]
+GrowthSizeBound: [Formalism.LFunctionChainParameters.ThickSetMeanBounds.GrowthSizeBound used=true]
+proposition_size_bound: [Formalism.LFunctionChainParameters.ThickSetMeanBounds.proposition_size_bound used=true]
+ThinH: [UpperTheory.Top.ThinH used=true]
+VWinAt: [UpperTheory.Top.VWinAt used=true]
+VVle: [UpperTheory.Top.VVle used=true]
+AskMainBalance: [Formalism.LFunctionChainParameters.characterSumData.AskMainBalance used=false]
+ASK: [Formalism.LFunctionChainParameters.characterSumData.ASK used=true,
+ Formalism.L2.GlobalTheoryTheory.Arith.ASK used=false,
+ Formalism.RankGapBounds.WeightedMeanData.Data.ASK used=true,
+ Formalism.LFunctionChainParameters.PrimeWindowSizeBounds.LD.ASK used=true,
+ Formalism.MainNotions.LocalQuadraticParts.ASK used=true,
+ Deduction.BFrame.ASK used=false,
+ Formalism.L2.GlobalTheoryTheory.FamRec.FieldEq.ASK used=false,
+ Formalism.LFunctionChainParameters.DeficitSplitLemmas.ASK used=true]
+MAIN: [Deduction.BFrame.MAIN used=false,
+ Formalism.BasicNotions.SizeData₂.MAIN used=true,
+ Formalism.LFunctionChainParameters.characterSumData.MAIN used=true]
+ZetaQuarterPowerCorollary: [Formalism.B.ZetaQuarterPowerCorollary used=false]
+DetGain: [Formalism.B.DetGain used=false]
+OCCMEstimate: [Formalism.B.OCCMEstimate used=false]
+depcheck: 1185.21 s wall, 92733272 KB
+rc=0
+
+[exited with code 0]
