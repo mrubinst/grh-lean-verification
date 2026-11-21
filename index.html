@@ -157,8 +157,8 @@ def DirichletLZerosOnLine : Prop :=
 <h2>Log</h2>
 <ul class="log" id="log">
 <li><time>2026-11-21 09:02 UTC</time>Export for nanoda still running: 60.3 GB written, final size unknown.</li>
-<li><time>2026-11-21 08:58 UTC</time>Second dependency-closure run finished (135 names checked against the 1,478,198 declarations the main theorem depends on).</li>
-<li><time>2026-11-21 07:55 UTC</time>First dependency-closure run: <code>riemannHypothesis</code> depends on 1,478,198 declarations.</li>
+<li><time>2026-11-21 08:59 UTC</time>Second dependency-closure run finished (135 names checked against the 1,478,198 declarations the main theorem depends on).</li>
+<li><time>2026-11-21 08:26 UTC</time>First dependency-closure run recorded: <code>riemannHypothesis</code> depends on 1,478,198 declarations.</li>
 <li><time>2026-11-21 05:24 UTC</time>Kernel replay finished: all 175,187 modules accepted, 0 rejected.</li>
 <li><time>2026-11-21 04:29 UTC</time>Kernel replay: 166,076 modules accepted, 0 rejected by the kernel. The last modules import almost the whole project, and a replay worker running 16 at once grew to about 200 GB; 31 more chunks were stopped part-way by <code>earlyoom</code> (58 in all). We now run 8 at once per worker and fewer workers per server. Every interrupted chunk's unfinished modules were put back in the queue by the sweep; none contains a kernel rejection.</li>
 <li><time>2026-11-21 03:13 UTC</time>Kernel replay: 133,307 modules accepted, 0 rejected by the kernel. Between 02:15 and 02:50 UTC, 27 replay chunks were stopped part-way by the servers' out-of-memory daemon (<code>earlyoom</code>): the replay of later modules needs up to about 140 GB per worker, and we had started too many workers. None of these chunks contains a kernel rejection. We reduced the number of workers per server. A module counts as checked only if it has its own <code>OK</code> line; a sweep script (<a href="dist/sweep.py">sweep.py</a>) puts every module without one back in the queue.</li>
